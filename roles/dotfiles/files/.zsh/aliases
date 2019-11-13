@@ -8,9 +8,6 @@ alias :qa=exit
 alias :sp='test -n "$TMUX" && tmux split-window'
 alias :vs='test -n "$TMUX" && tmux split-window -h'
 alias :wq=exit
-alias a=ag
-alias b=bundle
-alias be='bundle exec'
 alias cd..='cd ..'
 alias clip='nc -U ~/.clipper.sock'
 alias d='hash -d'
@@ -23,13 +20,16 @@ alias j=jump
 alias l='ls -F'
 alias ll='ls -laF'
 alias o='git oneline'
-alias p='git patch'
+alias gp='git patch'
 alias prettyjson='python -m json.tool'
 alias oo='git oneline -10'
 alias s=ssh
 alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
 alias t=tmux
 alias v=vim
+
+alias cat=bat
+alias rgh='rg --hidden'
 
 if command -v nvim &> /dev/null; then
   alias vim=nvim # Use `\vim` or `command vim` to get the real vim.

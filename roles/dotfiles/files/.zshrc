@@ -210,7 +210,7 @@ setopt NO_HIST_IGNORE_DUPS     # don't filter contiguous duplicates from history
 setopt HIST_FIND_NO_DUPS       # don't show dupes when searching
 setopt HIST_IGNORE_SPACE       # [default] don't record commands starting with a space
 setopt HIST_VERIFY             # confirm history expansion (!$, !!, !foo)
-setopt IGNORE_EOF              # [default] prevent accidental C-d from exiting shell
+#setopt IGNORE_EOF              # [default] prevent accidental C-d from exiting shell
 setopt INTERACTIVE_COMMENTS    # [default] allow comments, even in interactive shells
 setopt LIST_PACKED             # make completion lists more densely packed
 setopt MENU_COMPLETE           # auto-insert first possible ambiguous completion
@@ -223,6 +223,50 @@ setopt SHARE_HISTORY           # share history across shells
 #
 # Bindings
 #
+# create a zkbd compatible hash;
+# to add other keys to this hash, see: man 5 terminfo
+typeset -g -A key
+
+key[Home]="${terminfo[khome]}"
+key[End]="${terminfo[kend]}"
+key[Insert]="${terminfo[kich1]}"
+key[Backspace]="${terminfo[kbs]}"
+key[Delete]="${terminfo[kdch1]}"
+key[Up]="${terminfo[kcuu1]}"
+key[Down]="${terminfo[kcud1]}"
+key[Left]="${terminfo[kcub1]}"
+key[Right]="${terminfo[kcuf1]}"
+key[PageUp]="${terminfo[kpp]}"
+key[PageDown]="${terminfo[knp]}"
+key[ShiftTab]="${terminfo[kcbt]}"
+
+# setup key accordingly
+[[ -n "${key[Home]}"      ]] && bindkey -- "${key[Home]}"      beginning-of-line
+[[ -n "${key[End]}"       ]] && bindkey -- "${key[End]}"       end-of-line
+[[ -n "${key[Insert]}"    ]] && bindkey -- "${key[Insert]}"    overwrite-mode
+[[ -n "${key[Backspace]}" ]] && bindkey -- "${key[Backspace]}" backward-delete-char
+[[ -n "${key[Delete]}"    ]] && bindkey -- "${key[Delete]}"    delete-char
+[[ -n "${key[Up]}"        ]] && bindkey -- "${key[Up]}"        up-line-or-history
+[[ -n "${key[Down]}"      ]] && bindkey -- "${key[Down]}"      down-line-or-history
+[[ -n "${key[Left]}"      ]] && bindkey -- "${key[Left]}"      backward-char
+[[ -n "${key[Right]}"     ]] && bindkey -- "${key[Right]}"     forward-char
+[[ -n "${key[PageUp]}"    ]] && bindkey -- "${key[PageUp]}"    beginning-of-buffer-or-history
+[[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
+[[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
+
+# Finally, make sure the terminal is in application mode, when zle is
+# active. Only then are the values from $terminfo valid.
+if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+	autoload -Uz add-zle-hook-widget
+	function zle_application_mode_start {
+		echoti smkx
+	}
+	function zle_application_mode_stop {
+		echoti rmkx
+	}
+	add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+fi
 
 bindkey -e # emacs bindings, set to -v for vi bindings
 
@@ -279,9 +323,9 @@ source $HOME/.zsh/vars
 # Third-party
 #
 
-CHRUBY=/usr/local/share/chruby
-test -e "$CHRUBY/chruby.sh" && source "$CHRUBY/chruby.sh"
-test -e "$CHRUBY/auto.sh" && source "$CHRUBY/auto.sh"
+#CHRUBY=/usr/local/share/chruby
+#test -e "$CHRUBY/chruby.sh" && source "$CHRUBY/chruby.sh"
+#test -e "$CHRUBY/auto.sh" && source "$CHRUBY/auto.sh"
 
 # Skim
 
@@ -293,6 +337,7 @@ test -e "$HOME/.zsh/skim/shell/completion.zsh" && source "$HOME/.zsh/skim/shell/
 #
 
 autoload -U add-zsh-hook
+eval "$(direnv hook zsh)"
 
 function -set-tab-and-window-title() {
   emulate -L zsh
@@ -447,14 +492,30 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Uncomment this to get syntax highlighting:
-# source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source ~/.oh-my-zsh/plugins/gpg-agent/gpg-agent.plugin.zsh 
+
+#
+# ZPM
+#
+#if [[ ! -f ~/.zpm/zpm.zsh ]]; then
+#  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
+#fi
+#source ~/.zpm/zpm.zsh
+
+#zpm load zsh-users/zsh-autosuggestions
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+#zpm load gpg-agent,type:omz
+#zpm load zsh-users/zsh-syntax-highlighting
 
 #
 # /etc/motd
 #
 
-if [ -e /etc/motd ]; then
-  if ! cmp -s $HOME/.hushlogin /etc/motd; then
-    tee $HOME/.hushlogin < /etc/motd
-  fi
-fi
+#if [ -e /etc/motd ]; then
+#  if ! cmp -s $HOME/.hushlogin /etc/motd; then
+#    tee $HOME/.hushlogin < /etc/motd
+#  fi
+#fi
+

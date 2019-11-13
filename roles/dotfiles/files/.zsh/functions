@@ -1,17 +1,8 @@
-# Until .agrc exists...
-# (https://github.com/ggreer/the_silver_searcher/pull/709)
-function ag() {
-  emulate -L zsh
-
-  # italic blue paths, pink line numbers, underlined purple matches
-  command ag --pager="less -iFMRSX" --color-path=34\;3 --color-line-number=35 --color-match=35\;1\;4 "$@"
-}
-
 # fd - "find directory"
 # Inspired by: https://github.com/junegunn/fzf/wiki/examples#changing-directory
 function fd() {
   local DIR
-  DIR=$(bfs -type d 2> /dev/null | sk --no-multi --preview='test -n "{}" && ls {}' -q "$*") && cd "$DIR"
+  DIR=$(bfs -type l,d 2> /dev/null | sk --no-multi --preview='test -n "{}" && ls {}' -q "$*") && cd "$DIR"
 }
 
 # fh - "find [in] history"
@@ -265,4 +256,8 @@ function tick() {
     export GIT_AUTHOR_DATE="$TS $TZ"
     export GIT_COMMITTER_DATE="$TS $TZ"
   fi
+}
+
+function awspass() {
+  pass ${AWS_SOURCE_PROFILE}
 }
