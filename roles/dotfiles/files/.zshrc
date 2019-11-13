@@ -10,6 +10,14 @@ __WINCENT[ITALIC_ON]=$'\e[3m'
 __WINCENT[ITALIC_OFF]=$'\e[23m'
 
 #
+# ZPM
+#
+if [[ ! -f ~/.zpm/zpm.zsh ]]; then
+  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
+fi
+source ~/.zpm/zpm.zsh
+
+#
 # Teh H4xx
 #
 
@@ -254,6 +262,15 @@ key[ShiftTab]="${terminfo[kcbt]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
 
+bindkey '^[[1;5C' forward-word
+bindkey '^[[C' forward-word
+
+bindkey '^[[1;5D' backward-word
+bindkey '^[[D' backward-word
+
+bindkey '^[[3;5~' delete-word
+bindkey '^H' backward-delete-word
+
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
@@ -488,26 +505,20 @@ test -f $HOST_RC && source $HOST_RC
 # Plug-ins
 #
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 
 # Uncomment this to get syntax highlighting:
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source ~/.oh-my-zsh/plugins/gpg-agent/gpg-agent.plugin.zsh 
+#source ~/.oh-my-zsh/plugins/gpg-agent/gpg-agent.plugin.zsh 
 
-#
-# ZPM
-#
-#if [[ ! -f ~/.zpm/zpm.zsh ]]; then
-#  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
-#fi
-#source ~/.zpm/zpm.zsh
-
-#zpm load zsh-users/zsh-autosuggestions
-#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
-#zpm load gpg-agent,type:omz
-#zpm load zsh-users/zsh-syntax-highlighting
+zpm load zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
+zpm load gpg-agent,type:omz
+#zpm load git,type:omz
+#zpm load kubectl,type:omz
+zpm load zsh-users/zsh-syntax-highlighting
 
 #
 # /etc/motd
