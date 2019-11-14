@@ -10,14 +10,6 @@ __WINCENT[ITALIC_ON]=$'\e[3m'
 __WINCENT[ITALIC_OFF]=$'\e[23m'
 
 #
-# ZPM
-#
-if [[ ! -f ~/.zpm/zpm.zsh ]]; then
-  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
-fi
-source ~/.zpm/zpm.zsh
-
-#
 # Teh H4xx
 #
 
@@ -324,6 +316,14 @@ zle -N fg-bg
 bindkey '^Z' fg-bg
 
 #
+# ZPM
+#
+if [[ ! -f ~/.zpm/zpm.zsh ]]; then
+  git clone --recursive https://github.com/zpm-zsh/zpm ~/.zpm
+fi
+source ~/.zpm/zpm.zsh
+
+#
 # Other
 #
 
@@ -516,8 +516,8 @@ test -f $HOST_RC && source $HOST_RC
 zpm load zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
 zpm load gpg-agent,type:omz
-#zpm load git,type:omz
-#zpm load kubectl,type:omz
+zpm load git,type:omz
+zpm load kubectl,type:omz
 zpm load zsh-users/zsh-syntax-highlighting
 
 #

@@ -1,2 +1,8 @@
 # don't export CDPATH (can cause problems with shell scripts etc)
 CDPATH=.:~:~/code
+export AWS_VAULT_BACKEND=pass
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+

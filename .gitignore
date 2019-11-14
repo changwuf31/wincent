@@ -1,6 +1,8 @@
 *.pyc
+*.zwc
 /media
 /python
+/roles/dotfiles/files/.zsh/cache
 /roles/dotfiles/files/.gh.json
 /roles/dotfiles/files/.hammerspoon/iterm.lua
 /roles/dotfiles/files/.imapfilter/private.lua
