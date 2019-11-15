@@ -45,9 +45,9 @@ esac
 
 # usually this means running on a machine with a statically-linked, hand-built
 # tmux (and ncurses)
-if [ -d "$HOME/share/terminfo" ]; then
-  export TERMINFO=$HOME/share/terminfo
-fi
+#if [ -d "$HOME/share/terminfo" ]; then
+#  export TERMINFO=$HOME/share/terminfo
+#fi
 
 # filename (if known), line number if known, falling back to percent if known,
 # falling back to byte offset, falling back to dash
@@ -80,10 +80,23 @@ export EC2_HOME=~/bin/ec2-api-tools
 export EC2_PRIVATE_KEY=~/.ssh/ec2wincent_cert_pk.pem
 export EC2_CERT=~/.ssh/ec2wincent_cert.pem
 
+# GPG
 export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
 
+# Go-Lang
 export GOPATH=~/code/go
+
+# for aws-vault
+export AWS_VAULT_BACKEND=pass
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
 
 test -e $HOME/.zsh/exports.private && source $HOME/.zsh/exports.private
 
 test -d $HOME/n && export N_PREFIX="$HOME/n"
+
