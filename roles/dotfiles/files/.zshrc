@@ -511,11 +511,8 @@ test -f $HOST_RC && source $HOST_RC
 # Uncomment this to get syntax highlighting:
 #source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#source ~/.oh-my-zsh/plugins/gpg-agent/gpg-agent.plugin.zsh 
-
 zpm load zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
-zpm load gpg-agent,type:omz
 zpm load git,type:omz
 zpm load kubectl,type:omz
 zpm load zsh-users/zsh-syntax-highlighting
