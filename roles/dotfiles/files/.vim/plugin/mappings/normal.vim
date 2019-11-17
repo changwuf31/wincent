@@ -17,10 +17,6 @@ noremap Y y$
 "nnoremap <C-j> <C-w>j
 "nnoremap <C-k> <C-w>k
 "nnoremap <C-l> <C-w>l
-nnoremap <C-Left> <C-w>h
-nnoremap <C-Down> <C-w>j
-nnoremap <C-Up> <C-w>k
-nnoremap <C-Right> <C-w>l
 
 " Repurpose cursor keys (accessible near homerow via "SpaceFN" layout) for one
 " of my most oft-use key sequences.
@@ -37,3 +33,4 @@ nnoremap <C-Right> <C-w>l
 " Store relative line number jumps in the jumplist if they exceed a threshold.
 nnoremap <expr> k (v:count > 5 ? "m'" . v:count : '') . 'k'
 nnoremap <expr> j (v:count > 5 ? "m'" . v:count : '') . 'j'
+
