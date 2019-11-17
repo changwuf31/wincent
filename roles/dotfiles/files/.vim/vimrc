@@ -132,9 +132,9 @@ endif
 
 let g:LanguageClient_diagnosticsList='Location'
 
-if filereadable('/usr/local/bin/python3')
+if filereadable('/usr/bin/python3')
   " Avoid search, speeding up start-up.
-  let g:python3_host_prog='/usr/local/bin/python3'
+  let g:python3_host_prog='/usr/bin/python3'
 endif
 
 " Normally <leader>s (mnemonic: "[s]earch");
@@ -184,7 +184,7 @@ if &loadplugins
     packadd! scalpel
     packadd! tcomment_vim
     packadd! terminus
-    packadd! typescript-vim
+    "packadd! typescript-vim
     packadd! ultisnips
     packadd! vcs-jump
     packadd! vim-ansible-yaml
@@ -195,9 +195,9 @@ if &loadplugins
     packadd! vim-eunuch
     packadd! vim-fugitive
     packadd! vim-git
-    packadd! vim-javascript
+    "packadd! vim-javascript
     packadd! vim-json
-    packadd! vim-jsx
+    "packadd! vim-jsx
     packadd! vim-lion
     packadd! vim-markdown
     packadd! vim-operator-user
@@ -210,7 +210,7 @@ if &loadplugins
     packadd! vim-speeddating
     packadd! vim-surround
     packadd! vim-textobj-comment
-    packadd! vim-textobj-rubyblock
+    "packadd! vim-textobj-rubyblock
     packadd! vim-textobj-user
     packadd! vim-zsh
   else
