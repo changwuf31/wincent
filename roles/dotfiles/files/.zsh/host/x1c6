@@ -1,0 +1,6 @@
+# Remove Aliases
+unalias cat
+
+# Custom Aliases
+alias wuf31="cd /home/wuf31 && toolbox enter -c wuf31"
+alias airpaz="cd /home/airpaz && toolbox enter -c airpaz"
