@@ -318,7 +318,9 @@ test -e "$HOME/.zsh/skim/shell/completion.zsh" && source "$HOME/.zsh/skim/shell/
 #
 
 autoload -U add-zsh-hook
-eval "$(direnv hook zsh)"
+if [ -f /usr/bin/direnv ]; then
+  eval "$(direnv hook zsh)"
+fi
 
 function -set-tab-and-window-title() {
   emulate -L zsh
