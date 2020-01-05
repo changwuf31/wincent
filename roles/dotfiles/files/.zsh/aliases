@@ -32,6 +32,7 @@ alias k9='TERM="screen-256color" k9s'
 alias cat=bat
 alias rgh='rg --hidden'
 alias sysu='systemctl --user'
+alias jr='vim ~/draft/journal.md'
 
 if command -v nvim &> /dev/null; then
   alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
