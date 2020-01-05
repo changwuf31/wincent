@@ -467,6 +467,10 @@ test -f $LOCAL_RC && source $LOCAL_RC
 HOST_RC=$HOME/.zsh/host/$(hostname -s)
 test -f $HOST_RC && source $HOST_RC
 
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  source /etc/profile.d/vte.sh
+fi
+
 #
 # Plug-ins
 #
