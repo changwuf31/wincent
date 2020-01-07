@@ -29,11 +29,6 @@ alias t=tmux
 alias v=vim
 alias k9='TERM="screen-256color" k9s'
 
-alias cat=bat
-alias rgh='rg --hidden'
-alias sysu='systemctl --user'
-alias jr='vim ~/draft/journal.md'
-
 if command -v nvim &> /dev/null; then
   alias vim=nvim # Use `\vim` or `command vim` to get the real vim.
 fi
@@ -70,3 +65,17 @@ alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
 
 # Mnemonic: "[W]c"
 alias -g W="|wc -l"
+
+# TodoTxt
+alias tn='todo.sh -d ~/.config/todo/1week'
+alias ts='todo.sh -d ~/.config/todo/1month'
+alias tm='todo.sh -d ~/.config/todo/6months'
+alias tl='todo.sh -d ~/.config/todo/1year'
+alias txl='todo.sh -d ~/.config/todo/3years'
+alias tg='todo.sh -d ~/.config/todo/lifetime'
+
+alias cat=bat
+alias rgh='rg --hidden'
+alias sysu='systemctl --user'
+alias jr='vim ~/draft/journal.md'
+

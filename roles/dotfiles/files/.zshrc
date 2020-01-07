@@ -480,6 +480,9 @@ fi
 
 # Uncomment this to get syntax highlighting:
 #source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f /home/shared/opt/todotxt/todo_completion ]; then
+  source /home/shared/opt/todotxt/todo_completion
+fi 
 
 zpm load zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=59'
