@@ -97,10 +97,10 @@ function! wincent#statusline#rhs() abort
   return l:rhs
 endfunction
 
-let s:default_lhs_color='Identifier'
+let s:default_lhs_color='ModeMsg'
 let s:async_lhs_color='Constant'
-let s:modified_lhs_color='ModeMsg'
-let s:wincent_statusline_status_highlight=s:default_lhs_color
+let s:modified_lhs_color='Identifier'
+let s:wincent_statusline_status_highlight=s:modified_lhs_color
 let s:async=0
 
 function! wincent#statusline#async_start() abort
