@@ -5,3 +5,5 @@ unalias cat
 alias vim=vi
 alias wuf31="toolbox enter -c wuf31"
 alias airpaz="toolbox enter -c airpaz"
+alias atnetwork="toolbox enter -c atnetwork"
+alias tsh="toolbox enter -c tsh"

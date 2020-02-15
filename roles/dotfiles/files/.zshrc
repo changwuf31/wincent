@@ -544,3 +544,5 @@ bindkey '^[[D' backward-word
 bindkey '^[[3;5~' delete-word
 bindkey '^H' backward-delete-word
 
+# fix ssh completion
+zstyle ':completion:*:ssh:*' hosts off
