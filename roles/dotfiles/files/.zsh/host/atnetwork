@@ -1,0 +1,1 @@
+export PS1=${PS1:s/\{green\}/\{green\}%m%f:/}
